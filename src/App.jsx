@@ -5,6 +5,7 @@ import MenuSection from "./components/MenuSection.jsx";
 import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
 import OrderForm from "./components/OrderForm.jsx";
+import OrderSummary from "./components/OrderSummary.jsx";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -130,30 +131,14 @@ function App() {
   checkoutMessage={checkoutMessage}
 />
 
-      <section>
-        <h2>Order Summary</h2>
-        <p>Order Type: {orderType}</p>
-        <p>Name: {customerName || "Not entered"}</p>
-        <p>Phone: {customerPhone || "Not entered"}</p>
-
-        {orderType === "Delivery" && (
-          <p>Address: {customerAddress || "Not entered"}</p>
-        )}
-
-        <h3>Items</h3>
-
-        {cartItems.length === 0 ? (
-          <p>No items yet.</p>
-        ) : (
-          cartItems.map((item) => (
-            <p key={item.id}>
-              {item.name} x {item.quantity}
-            </p>
-          ))
-        )}
-
-        <h3>Total: ${finalTotal.toFixed(2)}</h3>
-      </section>
+  <OrderSummary
+  orderType={orderType}
+  customerName={customerName}
+  customerPhone={customerPhone}
+  customerAddress={customerAddress}
+  cartItems={cartItems}
+  finalTotal={finalTotal}
+/>
 
       {orderStatus && (
         <section>
