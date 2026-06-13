@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import RestaurantSection from "./components/RestaurantSection.jsx";
@@ -10,7 +10,11 @@ import OrderStatus from "./components/OrderStatus.jsx";
 import Footer from "./components/Footer.jsx";
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem("foodifyCart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
+
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
@@ -20,6 +24,10 @@ function App() {
   const [discountPercent, setDiscountPercent] = useState(0);
   const [couponMessage, setCouponMessage] = useState("");
   const [orderStatus, setOrderStatus] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("foodifyCart", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   function addToCart(food) {
     const itemExists = cartItems.find((item) => item.id === food.id);
