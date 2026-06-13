@@ -9,8 +9,17 @@ function App() {
   const [selectedRestaurant, setSelectedRestaurant] = useState("All");
   const [selectedBadge, setSelectedBadge] = useState("All");
   const [sortOption, setSortOption] = useState("default");
+  const [favoriteIds, setFavoriteIds] = useState([]);
 
   const badges = ["All", "Popular", "New", "Spicy"];
+
+  function toggleFavorite(foodId) {
+    if (favoriteIds.includes(foodId)) {
+      setFavoriteIds(favoriteIds.filter((id) => id !== foodId));
+    } else {
+      setFavoriteIds([...favoriteIds, foodId]);
+    }
+  }
 
   const filteredFoods = foods
     .filter((food) => {
@@ -90,6 +99,9 @@ function App() {
             <p>Restaurant: {food.restaurant}</p>
             <p>Badge: {food.badge}</p>
             <p>Price: ${food.price}</p>
+            <button onClick={() => toggleFavorite(food.id)}>
+              {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
+            </button>
             <button>Add to Cart</button>
           </div>
         ))}
