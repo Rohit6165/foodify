@@ -19,6 +19,7 @@ function App() {
   const [couponCode, setCouponCode] = useState("");
   const [discountPercent, setDiscountPercent] = useState(0);
   const [couponMessage, setCouponMessage] = useState("");
+  const [orderStatus, setOrderStatus] = useState("");
 
   const badges = ["All", "Popular", "New", "Spicy"];
 
@@ -75,25 +76,30 @@ function App() {
   function placeOrder() {
     if (cartItems.length === 0) {
       setCheckoutMessage("Please add food to your cart.");
+      setOrderStatus("");
       return;
     }
 
     if (customerName.trim() === "") {
       setCheckoutMessage("Please enter your name.");
+      setOrderStatus("");
       return;
     }
 
     if (customerPhone.trim() === "") {
       setCheckoutMessage("Please enter your phone number.");
+      setOrderStatus("");
       return;
     }
 
     if (orderType === "Delivery" && customerAddress.trim() === "") {
       setCheckoutMessage("Please enter your delivery address.");
+      setOrderStatus("");
       return;
     }
 
     setCheckoutMessage("Order placed successfully!");
+    setOrderStatus("Preparing your order");
   }
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -306,6 +312,13 @@ function App() {
 
         <h3>Total: ${finalTotal.toFixed(2)}</h3>
       </section>
+
+      {orderStatus && (
+        <section>
+          <h2>Order Status</h2>
+          <p>{orderStatus}</p>
+        </section>
+      )}
     </div>
   );
 }
