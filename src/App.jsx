@@ -2,11 +2,12 @@ import { useState } from "react";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import MenuSection from "./components/MenuSection.jsx";
-import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
 import OrderForm from "./components/OrderForm.jsx";
 import OrderSummary from "./components/OrderSummary.jsx";
 import OrderStatus from "./components/OrderStatus.jsx";
+import Footer from "./components/Footer.jsx";
+
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [customerName, setCustomerName] = useState("");
@@ -101,47 +102,47 @@ function App() {
   const finalTotal = cartTotal - discountAmount;
 
   return (
-    <div>
+    <div className="app">
       <Navbar cartCount={cartCount} />
       <Hero />
       <MenuSection addToCart={addToCart} />
 
       <Cart
-  cartItems={cartItems}
-  cartTotal={cartTotal}
-  discountAmount={discountAmount}
-  finalTotal={finalTotal}
-  couponCode={couponCode}
-  couponMessage={couponMessage}
-  setCouponCode={setCouponCode}
-  applyCoupon={applyCoupon}
-  increaseQuantity={increaseQuantity}
-  decreaseQuantity={decreaseQuantity}
-/>
-     <OrderForm
-  orderType={orderType}
-  setOrderType={setOrderType}
-  customerName={customerName}
-  setCustomerName={setCustomerName}
-  customerPhone={customerPhone}
-  setCustomerPhone={setCustomerPhone}
-  customerAddress={customerAddress}
-  setCustomerAddress={setCustomerAddress}
-  placeOrder={placeOrder}
-  checkoutMessage={checkoutMessage}
-/>
+        cartItems={cartItems}
+        cartTotal={cartTotal}
+        discountAmount={discountAmount}
+        finalTotal={finalTotal}
+        couponCode={couponCode}
+        couponMessage={couponMessage}
+        setCouponCode={setCouponCode}
+        applyCoupon={applyCoupon}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+      />
 
-  <OrderSummary
-  orderType={orderType}
-  customerName={customerName}
-  customerPhone={customerPhone}
-  customerAddress={customerAddress}
-  cartItems={cartItems}
-  finalTotal={finalTotal}
-/>
+      <OrderForm
+        orderType={orderType}
+        setOrderType={setOrderType}
+        customerName={customerName}
+        setCustomerName={setCustomerName}
+        customerPhone={customerPhone}
+        setCustomerPhone={setCustomerPhone}
+        customerAddress={customerAddress}
+        setCustomerAddress={setCustomerAddress}
+        placeOrder={placeOrder}
+        checkoutMessage={checkoutMessage}
+      />
 
-     <OrderStatus orderStatus={orderStatus} />
+      <OrderSummary
+        orderType={orderType}
+        customerName={customerName}
+        customerPhone={customerPhone}
+        customerAddress={customerAddress}
+        cartItems={cartItems}
+        finalTotal={finalTotal}
+      />
 
+      <OrderStatus orderStatus={orderStatus} />
       <Footer />
     </div>
   );
