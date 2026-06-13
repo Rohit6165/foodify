@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
+import RestaurantSection from "./components/RestaurantSection.jsx";
 import MenuSection from "./components/MenuSection.jsx";
 import Cart from "./components/Cart.jsx";
 import OrderForm from "./components/OrderForm.jsx";
@@ -105,6 +106,7 @@ function App() {
     <div className="app">
       <Navbar cartCount={cartCount} />
       <Hero />
+      <RestaurantSection />
       <MenuSection addToCart={addToCart} />
 
       <Cart

@@ -75,14 +75,16 @@ select {
   margin: 12px 0;
 }
 
-.menu-grid {
+.menu-grid,
+.restaurant-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-top: 18px;
 }
 
-.food-card {
+.food-card,
+.restaurant-card {
   border: 1px solid #eee;
   border-radius: 14px;
   padding: 18px;
@@ -113,6 +115,31 @@ select {
   color: #ff6b35;
 }
 
+.restaurant-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-open,
+.status-closed {
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.status-open {
+  background: #dff8e8;
+  color: #16813a;
+}
+
+.status-closed {
+  background: #ffe1e1;
+  color: #c62828;
+}
+
 footer {
   text-align: center;
   background: #222;
@@ -120,7 +147,8 @@ footer {
 }
 
 @media (max-width: 800px) {
-  .menu-grid {
+  .menu-grid,
+  .restaurant-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -152,7 +180,8 @@ footer {
     padding: 14px;
   }
 
-  .menu-grid {
+  .menu-grid,
+  .restaurant-grid {
     grid-template-columns: 1fr;
   }
 }
