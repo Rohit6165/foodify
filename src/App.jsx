@@ -4,6 +4,7 @@ import categories from "./data/categories";
 import restaurants from "./data/restaurants";
 import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -315,11 +316,7 @@ function App() {
         </section>
       )}
 
-      <footer>
-        <h3>Foodify</h3>
-        <p>Fresh meals, fast delivery, happy customers.</p>
-        <p>© 2026 Foodify. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
