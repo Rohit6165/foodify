@@ -23,8 +23,38 @@ function App() {
   }
 
   function addToCart(food) {
-    setCartItems([...cartItems, food]);
+    const itemExists = cartItems.find((item) => item.id === food.id);
+
+    if (itemExists) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.id === food.id ? { ...item, quantity: item.quantity + 1 } : item
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...food, quantity: 1 }]);
+    }
   }
+
+  function increaseQuantity(foodId) {
+    setCartItems(
+      cartItems.map((item) =>
+        item.id === foodId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  }
+
+  function decreaseQuantity(foodId) {
+    setCartItems(
+      cartItems
+        .map((item) =>
+          item.id === foodId ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  }
+
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const filteredFoods = foods
     .filter((food) => {
@@ -46,7 +76,7 @@ function App() {
     <div>
       <nav>
         <h2>Foodify Navbar</h2>
-        <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart ({cartItems.length})</a>
+        <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart ({cartCount})</a>
       </nav>
 
       <section>
@@ -118,9 +148,12 @@ function App() {
         {cartItems.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
-          cartItems.map((item, index) => (
-            <div key={index}>
+          cartItems.map((item) => (
+            <div key={item.id}>
               <p>{item.name} - ${item.price}</p>
+              <p>Quantity: {item.quantity}</p>
+              <button onClick={() => decreaseQuantity(item.id)}>-</button>
+              <button onClick={() => increaseQuantity(item.id)}>+</button>
             </div>
           ))
         )}
