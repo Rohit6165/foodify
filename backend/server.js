@@ -67,6 +67,8 @@ const foods = [
 
 const categories = ["All", "Burger", "Pizza", "Rice"];
 
+const orders = [];
+
 app.get("/", (req, res) => {
   res.send("Foodify backend is running");
 });
@@ -81,6 +83,22 @@ app.get("/api/foods", (req, res) => {
 
 app.get("/api/categories", (req, res) => {
   res.json(categories);
+});
+
+app.post("/api/orders", (req, res) => {
+  const newOrder = {
+    id: orders.length + 1,
+    ...req.body,
+    status: "Preparing your order",
+    createdAt: new Date(),
+  };
+
+  orders.push(newOrder);
+
+  res.status(201).json({
+    message: "Order received successfully",
+    order: newOrder,
+  });
 });
 
 app.listen(PORT, () => {
