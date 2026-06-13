@@ -1,9 +1,9 @@
-import { useState } from "react";
-import foods from "../data/foods";
+import { useEffect, useState } from "react";
 import categories from "../data/categories";
 import restaurants from "../data/restaurants";
 
 function MenuSection({ addToCart }) {
+  const [foods, setFoods] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedRestaurant, setSelectedRestaurant] = useState("All");
@@ -12,6 +12,13 @@ function MenuSection({ addToCart }) {
   const [favoriteIds, setFavoriteIds] = useState([]);
 
   const badges = ["All", "Popular", "New", "Spicy"];
+
+  useEffect(() => {
+    fetch("http://localhost:5001/api/foods")
+      .then((response) => response.json())
+      .then((data) => setFoods(data))
+      .catch((error) => console.log(error));
+  }, []);
 
   function toggleFavorite(foodId) {
     if (favoriteIds.includes(foodId)) {
