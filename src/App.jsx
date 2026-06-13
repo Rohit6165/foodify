@@ -4,6 +4,7 @@ import Hero from "./components/Hero.jsx";
 import MenuSection from "./components/MenuSection.jsx";
 import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
+import OrderForm from "./components/OrderForm.jsx";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -116,60 +117,18 @@ function App() {
   increaseQuantity={increaseQuantity}
   decreaseQuantity={decreaseQuantity}
 />
-      <section>
-        <h2>Order Form</h2>
-
-        <div>
-          <label>
-            <input
-              type="radio"
-              value="Delivery"
-              checked={orderType === "Delivery"}
-              onChange={(event) => setOrderType(event.target.value)}
-            />
-            Delivery
-          </label>
-
-          <label>
-            <input
-              type="radio"
-              value="Pickup"
-              checked={orderType === "Pickup"}
-              onChange={(event) => setOrderType(event.target.value)}
-            />
-            Pickup
-          </label>
-        </div>
-
-        <p>Selected option: {orderType}</p>
-
-        <input
-          type="text"
-          placeholder="Your name"
-          value={customerName}
-          onChange={(event) => setCustomerName(event.target.value)}
-        />
-
-        <input
-          type="text"
-          placeholder="Phone number"
-          value={customerPhone}
-          onChange={(event) => setCustomerPhone(event.target.value)}
-        />
-
-        {orderType === "Delivery" && (
-          <input
-            type="text"
-            placeholder="Delivery address"
-            value={customerAddress}
-            onChange={(event) => setCustomerAddress(event.target.value)}
-          />
-        )}
-
-        <button onClick={placeOrder}>Place Order</button>
-
-        <p>{checkoutMessage}</p>
-      </section>
+     <OrderForm
+  orderType={orderType}
+  setOrderType={setOrderType}
+  customerName={customerName}
+  setCustomerName={setCustomerName}
+  customerPhone={customerPhone}
+  setCustomerPhone={setCustomerPhone}
+  customerAddress={customerAddress}
+  setCustomerAddress={setCustomerAddress}
+  placeOrder={placeOrder}
+  checkoutMessage={checkoutMessage}
+/>
 
       <section>
         <h2>Order Summary</h2>
