@@ -61,6 +61,10 @@ function App() {
     );
   }
 
+  function removeFromCart(foodId) {
+    setCartItems(cartItems.filter((item) => item.id !== foodId));
+  }
+
   function applyCoupon() {
     if (couponCode.trim().toUpperCase() === "FOODIFY10") {
       setDiscountPercent(10);
@@ -128,6 +132,7 @@ function App() {
         applyCoupon={applyCoupon}
         increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
+        removeFromCart={removeFromCart}
       />
 
       <OrderForm

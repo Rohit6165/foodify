@@ -9,6 +9,7 @@ function Cart({
   applyCoupon,
   increaseQuantity,
   decreaseQuantity,
+  removeFromCart,
 }) {
   return (
     <section>
@@ -24,8 +25,10 @@ function Cart({
                 {item.name} - ${item.price}
               </p>
               <p>Quantity: {item.quantity}</p>
+
               <button onClick={() => decreaseQuantity(item.id)}>-</button>
               <button onClick={() => increaseQuantity(item.id)}>+</button>
+              <button onClick={() => removeFromCart(item.id)}>Remove</button>
             </div>
           ))}
 
