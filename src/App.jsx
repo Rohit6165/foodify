@@ -3,6 +3,7 @@ import foods from "./data/foods";
 import categories from "./data/categories";
 import restaurants from "./data/restaurants";
 import Navbar from "./components/Navbar.jsx";
+import Hero from "./components/Hero.jsx";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -133,11 +134,7 @@ function App() {
     <div>
      <Navbar cartCount={cartCount} />
 
-      <section>
-        <h1>Order your favorite food fast</h1>
-        <p>Browse restaurants, choose delicious meals, and get food delivered fresh.</p>
-        <button>Browse Menu</button>
-      </section>
+      <Hero />
 
       <section>
         <h2>Menu</h2>
