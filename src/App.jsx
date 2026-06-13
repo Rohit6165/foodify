@@ -75,7 +75,7 @@ function App() {
     }
   }
 
-  function placeOrder() {
+  async function placeOrder() {
     if (cartItems.length === 0) {
       setCheckoutMessage("Please add food to your cart.");
       setOrderStatus("");
@@ -100,8 +100,27 @@ function App() {
       return;
     }
 
-    setCheckoutMessage("Order placed successfully!");
-    setOrderStatus("Preparing your order");
+    const orderData = {
+      customerName,
+      customerPhone,
+      customerAddress,
+      orderType,
+      items: cartItems,
+      total: finalTotal,
+    };
+
+    const response = await fetch("http://localhost:5001/api/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    const data = await response.json();
+
+    setCheckoutMessage(data.message);
+    setOrderStatus(data.order.status);
   }
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
