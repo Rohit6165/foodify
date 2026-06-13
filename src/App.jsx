@@ -1,10 +1,12 @@
 import { useState } from "react";
 import foods from "./data/foods";
 import categories from "./data/categories";
+import restaurants from "./data/restaurants";
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedRestaurant, setSelectedRestaurant] = useState("All");
 
   const filteredFoods = foods.filter((food) => {
     const matchesSearch = food.name
@@ -14,7 +16,10 @@ function App() {
     const matchesCategory =
       selectedCategory === "All" || food.category === selectedCategory;
 
-    return matchesSearch && matchesCategory;
+    const matchesRestaurant =
+      selectedRestaurant === "All" || food.restaurant === selectedRestaurant;
+
+    return matchesSearch && matchesCategory && matchesRestaurant;
   });
 
   return (
@@ -42,11 +47,23 @@ function App() {
 
         <div>
           {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-            >
+            <button key={category} onClick={() => setSelectedCategory(category)}>
               {category}
+            </button>
+          ))}
+        </div>
+
+        <div>
+          <button onClick={() => setSelectedRestaurant("All")}>
+            All Restaurants
+          </button>
+
+          {restaurants.map((restaurant) => (
+            <button
+              key={restaurant.id}
+              onClick={() => setSelectedRestaurant(restaurant.name)}
+            >
+              {restaurant.name}
             </button>
           ))}
         </div>
