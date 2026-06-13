@@ -1,6 +1,13 @@
+import { useState } from "react";
 import foods from "./data/foods";
 
 function App() {
+  const [searchText, setSearchText] = useState("");
+
+  const filteredFoods = foods.filter((food) =>
+    food.name.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <div>
       <nav>
@@ -17,7 +24,14 @@ function App() {
       <section>
         <h2>Menu</h2>
 
-        {foods.map((food) => (
+        <input
+          type="text"
+          placeholder="Search food..."
+          value={searchText}
+          onChange={(event) => setSearchText(event.target.value)}
+        />
+
+        {filteredFoods.map((food) => (
           <div key={food.id}>
             <h3>{food.name}</h3>
             <p>Category: {food.category}</p>
