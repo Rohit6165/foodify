@@ -15,6 +15,7 @@ function App() {
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
   const [orderType, setOrderType] = useState("Delivery");
+  const [checkoutMessage, setCheckoutMessage] = useState("");
 
   const badges = ["All", "Popular", "New", "Spicy"];
 
@@ -56,6 +57,30 @@ function App() {
         )
         .filter((item) => item.quantity > 0)
     );
+  }
+
+  function placeOrder() {
+    if (cartItems.length === 0) {
+      setCheckoutMessage("Please add food to your cart.");
+      return;
+    }
+
+    if (customerName.trim() === "") {
+      setCheckoutMessage("Please enter your name.");
+      return;
+    }
+
+    if (customerPhone.trim() === "") {
+      setCheckoutMessage("Please enter your phone number.");
+      return;
+    }
+
+    if (orderType === "Delivery" && customerAddress.trim() === "") {
+      setCheckoutMessage("Please enter your delivery address.");
+      return;
+    }
+
+    setCheckoutMessage("Order placed successfully!");
   }
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -221,6 +246,10 @@ function App() {
             onChange={(event) => setCustomerAddress(event.target.value)}
           />
         )}
+
+        <button onClick={placeOrder}>Place Order</button>
+
+        <p>{checkoutMessage}</p>
       </section>
     </div>
   );
