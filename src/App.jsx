@@ -6,10 +6,11 @@ function App() {
         <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart</a>
       </nav>
 
-      <main>
-        <h1>Foodify</h1>
-        <p>Fresh food delivered to your door.</p>
-      </main>
+      <section>
+        <h1>Order your favorite food fast</h1>
+        <p>Browse restaurants, choose delicious meals, and get food delivered fresh.</p>
+        <button>Browse Menu</button>
+      </section>
     </div>
   );
 }
