@@ -1,12 +1,21 @@
 import { useState } from "react";
 import foods from "./data/foods";
+import categories from "./data/categories";
 
 function App() {
   const [searchText, setSearchText] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const filteredFoods = foods.filter((food) =>
-    food.name.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filteredFoods = foods.filter((food) => {
+    const matchesSearch = food.name
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
+
+    const matchesCategory =
+      selectedCategory === "All" || food.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <div>
@@ -30,6 +39,17 @@ function App() {
           value={searchText}
           onChange={(event) => setSearchText(event.target.value)}
         />
+
+        <div>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
 
         {filteredFoods.map((food) => (
           <div key={food.id}>
