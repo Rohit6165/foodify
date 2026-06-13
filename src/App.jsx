@@ -6,7 +6,7 @@ import Footer from "./components/Footer.jsx";
 import Cart from "./components/Cart.jsx";
 import OrderForm from "./components/OrderForm.jsx";
 import OrderSummary from "./components/OrderSummary.jsx";
-
+import OrderStatus from "./components/OrderStatus.jsx";
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [customerName, setCustomerName] = useState("");
@@ -140,12 +140,7 @@ function App() {
   finalTotal={finalTotal}
 />
 
-      {orderStatus && (
-        <section>
-          <h2>Order Status</h2>
-          <p>{orderStatus}</p>
-        </section>
-      )}
+     <OrderStatus orderStatus={orderStatus} />
 
       <Footer />
     </div>
