@@ -1,10 +1,9 @@
+import Navbar from "./components/Navbar.jsx";
+
 function App() {
   return (
     <div>
-      <nav>
-        <h2>Foodify Navbar</h2>
-        <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart</a>
-      </nav>
+      <Navbar />
 
       <main>
         <h1>Foodify</h1>
