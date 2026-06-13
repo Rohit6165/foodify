@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar.jsx";
 import Hero from "./components/Hero.jsx";
 import MenuSection from "./components/MenuSection.jsx";
 import Footer from "./components/Footer.jsx";
+import Cart from "./components/Cart.jsx";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -103,41 +104,18 @@ function App() {
       <Hero />
       <MenuSection addToCart={addToCart} />
 
-      <section>
-        <h2>Cart</h2>
-
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
-        ) : (
-          <>
-            {cartItems.map((item) => (
-              <div key={item.id}>
-                <p>{item.name} - ${item.price}</p>
-                <p>Quantity: {item.quantity}</p>
-                <button onClick={() => decreaseQuantity(item.id)}>-</button>
-                <button onClick={() => increaseQuantity(item.id)}>+</button>
-              </div>
-            ))}
-
-            <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
-
-            <input
-              type="text"
-              placeholder="Coupon code"
-              value={couponCode}
-              onChange={(event) => setCouponCode(event.target.value)}
-            />
-
-            <button onClick={applyCoupon}>Apply Coupon</button>
-
-            <p>{couponMessage}</p>
-
-            <p>Discount: ${discountAmount.toFixed(2)}</p>
-            <h3>Total: ${finalTotal.toFixed(2)}</h3>
-          </>
-        )}
-      </section>
-
+      <Cart
+  cartItems={cartItems}
+  cartTotal={cartTotal}
+  discountAmount={discountAmount}
+  finalTotal={finalTotal}
+  couponCode={couponCode}
+  couponMessage={couponMessage}
+  setCouponCode={setCouponCode}
+  applyCoupon={applyCoupon}
+  increaseQuantity={increaseQuantity}
+  decreaseQuantity={decreaseQuantity}
+/>
       <section>
         <h2>Order Form</h2>
 
