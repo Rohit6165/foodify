@@ -1,5 +1,5 @@
 # Foodify
-
+Live Demo: https://foodify-beige.vercel.app
 Foodify is a responsive food-ordering web app built with React and Vite.
 
 Users can browse restaurants, view dishes, filter food, add items to cart, apply a coupon, and place an order.
