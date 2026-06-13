@@ -41,21 +41,23 @@ function MenuSection({ addToCart }) {
     <section>
       <h2>Menu</h2>
 
-      <input
-        type="text"
-        placeholder="Search food..."
-        value={searchText}
-        onChange={(event) => setSearchText(event.target.value)}
-      />
+      <div className="filter-row">
+        <input
+          type="text"
+          placeholder="Search food..."
+          value={searchText}
+          onChange={(event) => setSearchText(event.target.value)}
+        />
 
-      <select value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
-        <option value="default">Default</option>
-        <option value="price-low">Price: Low to High</option>
-        <option value="price-high">Price: High to Low</option>
-        <option value="name">Name: A to Z</option>
-      </select>
+        <select value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
+          <option value="default">Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
 
-      <div>
+      <div className="filter-row">
         {categories.map((category) => (
           <button key={category} onClick={() => setSelectedCategory(category)}>
             {category}
@@ -63,7 +65,7 @@ function MenuSection({ addToCart }) {
         ))}
       </div>
 
-      <div>
+      <div className="filter-row">
         <button onClick={() => setSelectedRestaurant("All")}>All Restaurants</button>
 
         {restaurants.map((restaurant) => (
@@ -73,7 +75,7 @@ function MenuSection({ addToCart }) {
         ))}
       </div>
 
-      <div>
+      <div className="filter-row">
         {badges.map((badge) => (
           <button key={badge} onClick={() => setSelectedBadge(badge)}>
             {badge}
@@ -81,21 +83,22 @@ function MenuSection({ addToCart }) {
         ))}
       </div>
 
-      {filteredFoods.map((food) => (
-        <div key={food.id}>
-          <h3>{food.name}</h3>
-          <p>Category: {food.category}</p>
-          <p>Restaurant: {food.restaurant}</p>
-          <p>Badge: {food.badge}</p>
-          <p>Price: ${food.price}</p>
+      <div className="menu-grid">
+        {filteredFoods.map((food) => (
+          <div className="food-card" key={food.id}>
+            <span className="badge">{food.badge}</span>
+            <h3>{food.name}</h3>
+            <p>{food.category} • {food.restaurant}</p>
+            <p className="price">${food.price}</p>
 
-          <button onClick={() => toggleFavorite(food.id)}>
-            {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
-          </button>
+            <button onClick={() => toggleFavorite(food.id)}>
+              {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
+            </button>
 
-          <button onClick={() => addToCart(food)}>Add to Cart</button>
-        </div>
-      ))}
+            <button onClick={() => addToCart(food)}>Add to Cart</button>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
