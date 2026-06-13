@@ -10,6 +10,7 @@ function App() {
   const [selectedBadge, setSelectedBadge] = useState("All");
   const [sortOption, setSortOption] = useState("default");
   const [favoriteIds, setFavoriteIds] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   const badges = ["All", "Popular", "New", "Spicy"];
 
@@ -19,6 +20,10 @@ function App() {
     } else {
       setFavoriteIds([...favoriteIds, foodId]);
     }
+  }
+
+  function addToCart(food) {
+    setCartItems([...cartItems, food]);
   }
 
   const filteredFoods = foods
@@ -41,7 +46,7 @@ function App() {
     <div>
       <nav>
         <h2>Foodify Navbar</h2>
-        <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart</a>
+        <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart ({cartItems.length})</a>
       </nav>
 
       <section>
@@ -102,9 +107,23 @@ function App() {
             <button onClick={() => toggleFavorite(food.id)}>
               {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
             </button>
-            <button>Add to Cart</button>
+            <button onClick={() => addToCart(food)}>Add to Cart</button>
           </div>
         ))}
+      </section>
+
+      <section>
+        <h2>Cart</h2>
+
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          cartItems.map((item, index) => (
+            <div key={index}>
+              <p>{item.name} - ${item.price}</p>
+            </div>
+          ))
+        )}
       </section>
     </div>
   );
