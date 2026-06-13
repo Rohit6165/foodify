@@ -14,6 +14,7 @@ function App() {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
+  const [orderType, setOrderType] = useState("Delivery");
 
   const badges = ["All", "Popular", "New", "Spicy"];
 
@@ -174,6 +175,30 @@ function App() {
       <section>
         <h2>Order Form</h2>
 
+        <div>
+          <label>
+            <input
+              type="radio"
+              value="Delivery"
+              checked={orderType === "Delivery"}
+              onChange={(event) => setOrderType(event.target.value)}
+            />
+            Delivery
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              value="Pickup"
+              checked={orderType === "Pickup"}
+              onChange={(event) => setOrderType(event.target.value)}
+            />
+            Pickup
+          </label>
+        </div>
+
+        <p>Selected option: {orderType}</p>
+
         <input
           type="text"
           placeholder="Your name"
@@ -188,12 +213,14 @@ function App() {
           onChange={(event) => setCustomerPhone(event.target.value)}
         />
 
-        <input
-          type="text"
-          placeholder="Delivery address"
-          value={customerAddress}
-          onChange={(event) => setCustomerAddress(event.target.value)}
-        />
+        {orderType === "Delivery" && (
+          <input
+            type="text"
+            placeholder="Delivery address"
+            value={customerAddress}
+            onChange={(event) => setCustomerAddress(event.target.value)}
+          />
+        )}
       </section>
     </div>
   );
