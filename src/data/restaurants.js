@@ -5,6 +5,7 @@ const restaurants = [
     cuisine: "American",
     rating: 4.6,
     deliveryTime: "25-35 min",
+    isOpen: true,
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const restaurants = [
     cuisine: "Italian",
     rating: 4.7,
     deliveryTime: "30-40 min",
+    isOpen: true,
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const restaurants = [
     cuisine: "Indian",
     rating: 4.8,
     deliveryTime: "35-45 min",
+    isOpen: false,
   },
 ];
 
