@@ -86,9 +86,13 @@ function MenuSection({ addToCart }) {
       <div className="menu-grid">
         {filteredFoods.map((food) => (
           <div className="food-card" key={food.id}>
+            <img className="food-image" src={food.image} alt={food.name} />
+
             <span className="badge">{food.badge}</span>
             <h3>{food.name}</h3>
-            <p>{food.category} • {food.restaurant}</p>
+            <p>
+              {food.category} • {food.restaurant}
+            </p>
             <p className="price">${food.price}</p>
 
             <button onClick={() => toggleFavorite(food.id)}>
