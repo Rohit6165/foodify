@@ -85,6 +85,10 @@ app.get("/api/categories", (req, res) => {
   res.json(categories);
 });
 
+app.get("/api/orders", (req, res) => {
+  res.json(orders);
+});
+
 app.post("/api/orders", (req, res) => {
   const newOrder = {
     id: orders.length + 1,
