@@ -5,6 +5,7 @@ const foods = [
     category: "Burger",
     price: 8.99,
     restaurant: "Foodify Grill",
+    badge: "Popular",
   },
   {
     id: 2,
@@ -12,6 +13,7 @@ const foods = [
     category: "Pizza",
     price: 12.99,
     restaurant: "Pizza Palace",
+    badge: "New",
   },
   {
     id: 3,
@@ -19,6 +21,7 @@ const foods = [
     category: "Rice",
     price: 10.99,
     restaurant: "Spice House",
+    badge: "Spicy",
   },
 ];
 

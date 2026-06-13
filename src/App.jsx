@@ -7,19 +7,17 @@ function App() {
   const [searchText, setSearchText] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedRestaurant, setSelectedRestaurant] = useState("All");
+  const [selectedBadge, setSelectedBadge] = useState("All");
+
+  const badges = ["All", "Popular", "New", "Spicy"];
 
   const filteredFoods = foods.filter((food) => {
-    const matchesSearch = food.name
-      .toLowerCase()
-      .includes(searchText.toLowerCase());
+    const matchesSearch = food.name.toLowerCase().includes(searchText.toLowerCase());
+    const matchesCategory = selectedCategory === "All" || food.category === selectedCategory;
+    const matchesRestaurant = selectedRestaurant === "All" || food.restaurant === selectedRestaurant;
+    const matchesBadge = selectedBadge === "All" || food.badge === selectedBadge;
 
-    const matchesCategory =
-      selectedCategory === "All" || food.category === selectedCategory;
-
-    const matchesRestaurant =
-      selectedRestaurant === "All" || food.restaurant === selectedRestaurant;
-
-    return matchesSearch && matchesCategory && matchesRestaurant;
+    return matchesSearch && matchesCategory && matchesRestaurant && matchesBadge;
   });
 
   return (
@@ -54,16 +52,18 @@ function App() {
         </div>
 
         <div>
-          <button onClick={() => setSelectedRestaurant("All")}>
-            All Restaurants
-          </button>
-
+          <button onClick={() => setSelectedRestaurant("All")}>All Restaurants</button>
           {restaurants.map((restaurant) => (
-            <button
-              key={restaurant.id}
-              onClick={() => setSelectedRestaurant(restaurant.name)}
-            >
+            <button key={restaurant.id} onClick={() => setSelectedRestaurant(restaurant.name)}>
               {restaurant.name}
+            </button>
+          ))}
+        </div>
+
+        <div>
+          {badges.map((badge) => (
+            <button key={badge} onClick={() => setSelectedBadge(badge)}>
+              {badge}
             </button>
           ))}
         </div>
@@ -73,6 +73,7 @@ function App() {
             <h3>{food.name}</h3>
             <p>Category: {food.category}</p>
             <p>Restaurant: {food.restaurant}</p>
+            <p>Badge: {food.badge}</p>
             <p>Price: ${food.price}</p>
             <button>Add to Cart</button>
           </div>
