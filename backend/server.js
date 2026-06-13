@@ -65,6 +65,8 @@ const foods = [
   },
 ];
 
+const categories = ["All", "Burger", "Pizza", "Rice"];
+
 app.get("/", (req, res) => {
   res.send("Foodify backend is running");
 });
@@ -75,6 +77,10 @@ app.get("/api/restaurants", (req, res) => {
 
 app.get("/api/foods", (req, res) => {
   res.json(foods);
+});
+
+app.get("/api/categories", (req, res) => {
+  res.json(categories);
 });
 
 app.listen(PORT, () => {
