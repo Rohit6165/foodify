@@ -83,28 +83,35 @@ function MenuSection({ addToCart }) {
         ))}
       </div>
 
-      <div className="menu-grid">
-        {filteredFoods.map((food) => (
-          <div className="food-card" key={food.id}>
-            <img className="food-image" src={food.image} alt={food.name} />
+      {filteredFoods.length === 0 ? (
+        <div className="empty-state">
+          <h3>No dishes found.</h3>
+          <p>Try changing your search or filters.</p>
+        </div>
+      ) : (
+        <div className="menu-grid">
+          {filteredFoods.map((food) => (
+            <div className="food-card" key={food.id}>
+              <img className="food-image" src={food.image} alt={food.name} />
 
-            <span className="badge">{food.badge}</span>
-            <h3>{food.name}</h3>
+              <span className="badge">{food.badge}</span>
+              <h3>{food.name}</h3>
 
-            <p>
-              {food.category} • {food.restaurant}
-            </p>
+              <p>
+                {food.category} • {food.restaurant}
+              </p>
 
-            <p className="price">${food.price}</p>
+              <p className="price">${food.price}</p>
 
-            <button onClick={() => toggleFavorite(food.id)}>
-              {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
-            </button>
+              <button onClick={() => toggleFavorite(food.id)}>
+                {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
+              </button>
 
-            <button onClick={() => addToCart(food)}>Add to Cart</button>
-          </div>
-        ))}
-      </div>
+              <button onClick={() => addToCart(food)}>Add to Cart</button>
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

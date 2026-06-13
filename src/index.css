@@ -219,3 +219,15 @@ footer {
     font-size: 32px;
   }
 }
+.empty-state {
+  text-align: center;
+  padding: 30px;
+  background: #fffdf9;
+  border: 1px dashed #ffb088;
+  border-radius: 14px;
+  margin-top: 18px;
+}
+
+.empty-state h3 {
+  color: #ff6b35;
+}
