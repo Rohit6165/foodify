@@ -3,6 +3,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+const Order = require("./models/Order");
+
 const app = express();
 const PORT = 5001;
 
@@ -80,8 +82,6 @@ const foods = [
 
 const categories = ["All", "Burger", "Pizza", "Rice"];
 
-const orders = [];
-
 app.get("/", (req, res) => {
   res.send("Foodify backend is running");
 });
@@ -98,19 +98,16 @@ app.get("/api/categories", (req, res) => {
   res.json(categories);
 });
 
-app.get("/api/orders", (req, res) => {
-  res.json(orders);
+app.get("/api/orders", async (req, res) => {
+  const savedOrders = await Order.find().sort({ createdAt: -1 });
+  res.json(savedOrders);
 });
 
-app.post("/api/orders", (req, res) => {
-  const newOrder = {
-    id: orders.length + 1,
+app.post("/api/orders", async (req, res) => {
+  const newOrder = await Order.create({
     ...req.body,
     status: "Preparing your order",
-    createdAt: new Date(),
-  };
-
-  orders.push(newOrder);
+  });
 
   res.status(201).json({
     message: "Order received successfully",
