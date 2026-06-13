@@ -19,34 +19,39 @@ function Cart({
         <p>Your cart is empty.</p>
       ) : (
         <>
-          {cartItems.map((item) => (
-            <div key={item.id}>
-              <p>
-                {item.name} - ${item.price}
-              </p>
-              <p>Quantity: {item.quantity}</p>
+          <div className="cart-list">
+            {cartItems.map((item) => (
+              <div className="cart-item" key={item.id}>
+                <div>
+                  <strong>{item.name}</strong>
+                  <p>${item.price} each</p>
+                  <p>Quantity: {item.quantity}</p>
+                </div>
 
-              <button onClick={() => decreaseQuantity(item.id)}>-</button>
-              <button onClick={() => increaseQuantity(item.id)}>+</button>
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
-            </div>
-          ))}
+                <div className="cart-actions">
+                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
+                  <button onClick={() => increaseQuantity(item.id)}>+</button>
+                  <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                </div>
+              </div>
+            ))}
+          </div>
 
-          <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
+          <div className="checkout-box">
+            <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
 
-          <input
-            type="text"
-            placeholder="Coupon code"
-            value={couponCode}
-            onChange={(event) => setCouponCode(event.target.value)}
-          />
+            <input
+              type="text"
+              placeholder="Coupon code"
+              value={couponCode}
+              onChange={(event) => setCouponCode(event.target.value)}
+            />
 
-          <button onClick={applyCoupon}>Apply Coupon</button>
-
-          <p>{couponMessage}</p>
-
-          <p>Discount: ${discountAmount.toFixed(2)}</p>
-          <h3>Total: ${finalTotal.toFixed(2)}</h3>
+            <button onClick={applyCoupon}>Apply Coupon</button>
+            <p>{couponMessage}</p>
+            <p>Discount: ${discountAmount.toFixed(2)}</p>
+            <h3>Total: ${finalTotal.toFixed(2)}</h3>
+          </div>
         </>
       )}
     </section>

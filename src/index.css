@@ -231,3 +231,35 @@ footer {
 .empty-state h3 {
   color: #ff6b35;
 }
+.cart-list {
+  display: grid;
+  gap: 12px;
+}
+
+.cart-item,
+.checkout-box {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 16px;
+  background: #fffdf9;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.cart-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
