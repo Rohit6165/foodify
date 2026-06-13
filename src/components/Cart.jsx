@@ -12,7 +12,7 @@ function Cart({
   removeFromCart,
 }) {
   return (
-    <section>
+    <section id="cart">
       <h2>Cart</h2>
 
       {cartItems.length === 0 ? (

@@ -4,9 +4,9 @@ function Navbar({ cartCount }) {
       <h2>Foodify</h2>
 
       <div>
-        <a href="#">Home</a>
-        <a href="#">Restaurants</a>
-        <a href="#">Cart ({cartCount})</a>
+        <a href="#home">Home</a>
+        <a href="#restaurants">Restaurants</a>
+        <a href="#cart">Cart ({cartCount})</a>
       </div>
     </nav>
   );

@@ -2,7 +2,7 @@ import restaurants from "../data/restaurants";
 
 function RestaurantSection() {
   return (
-    <section>
+    <section id="restaurants">
       <h2>Restaurants</h2>
 
       <div className="restaurant-grid">

@@ -38,7 +38,7 @@ function MenuSection({ addToCart }) {
     });
 
   return (
-    <section>
+    <section id="menu">
       <h2>Menu</h2>
 
       <div className="filter-row">
@@ -90,9 +90,11 @@ function MenuSection({ addToCart }) {
 
             <span className="badge">{food.badge}</span>
             <h3>{food.name}</h3>
+
             <p>
               {food.category} • {food.restaurant}
             </p>
+
             <p className="price">${food.price}</p>
 
             <button onClick={() => toggleFavorite(food.id)}>
