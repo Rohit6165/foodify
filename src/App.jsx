@@ -11,6 +11,9 @@ function App() {
   const [sortOption, setSortOption] = useState("default");
   const [favoriteIds, setFavoriteIds] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [customerAddress, setCustomerAddress] = useState("");
 
   const badges = ["All", "Popular", "New", "Spicy"];
 
@@ -166,6 +169,31 @@ function App() {
             <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
           </>
         )}
+      </section>
+
+      <section>
+        <h2>Order Form</h2>
+
+        <input
+          type="text"
+          placeholder="Your name"
+          value={customerName}
+          onChange={(event) => setCustomerName(event.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Phone number"
+          value={customerPhone}
+          onChange={(event) => setCustomerPhone(event.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Delivery address"
+          value={customerAddress}
+          onChange={(event) => setCustomerAddress(event.target.value)}
+        />
       </section>
     </div>
   );
