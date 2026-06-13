@@ -1,16 +1,15 @@
-import Navbar from "./components/Navbar.jsx";
-
-function App() {
+function Navbar({ cartCount }) {
   return (
-    <div>
-      <Navbar />
+    <nav>
+      <h2>Foodify</h2>
 
-      <main>
-        <h1>Foodify</h1>
-        <p>Fresh food delivered to your door.</p>
-      </main>
-    </div>
+      <div>
+        <a href="#">Home</a>
+        <a href="#">Restaurants</a>
+        <a href="#">Cart ({cartCount})</a>
+      </div>
+    </nav>
   );
 }
 
-export default App;
+export default Navbar;

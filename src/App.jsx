@@ -2,6 +2,7 @@ import { useState } from "react";
 import foods from "./data/foods";
 import categories from "./data/categories";
 import restaurants from "./data/restaurants";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
   const [searchText, setSearchText] = useState("");
@@ -130,10 +131,7 @@ function App() {
 
   return (
     <div>
-      <nav>
-        <h2>Foodify Navbar</h2>
-        <a href="#">Home</a> | <a href="#">Restaurants</a> | <a href="#">Cart ({cartCount})</a>
-      </nav>
+     <Navbar cartCount={cartCount} />
 
       <section>
         <h1>Order your favorite food fast</h1>
