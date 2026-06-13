@@ -16,6 +16,9 @@ function App() {
   const [customerAddress, setCustomerAddress] = useState("");
   const [orderType, setOrderType] = useState("Delivery");
   const [checkoutMessage, setCheckoutMessage] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [discountPercent, setDiscountPercent] = useState(0);
+  const [couponMessage, setCouponMessage] = useState("");
 
   const badges = ["All", "Popular", "New", "Spicy"];
 
@@ -59,6 +62,16 @@ function App() {
     );
   }
 
+  function applyCoupon() {
+    if (couponCode.trim().toUpperCase() === "FOODIFY10") {
+      setDiscountPercent(10);
+      setCouponMessage("Coupon applied! You got 10% off.");
+    } else {
+      setDiscountPercent(0);
+      setCouponMessage("Invalid coupon code.");
+    }
+  }
+
   function placeOrder() {
     if (cartItems.length === 0) {
       setCheckoutMessage("Please add food to your cart.");
@@ -89,6 +102,9 @@ function App() {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  const discountAmount = cartTotal * (discountPercent / 100);
+  const finalTotal = cartTotal - discountAmount;
 
   const filteredFoods = foods
     .filter((food) => {
@@ -193,6 +209,20 @@ function App() {
             ))}
 
             <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
+
+            <input
+              type="text"
+              placeholder="Coupon code"
+              value={couponCode}
+              onChange={(event) => setCouponCode(event.target.value)}
+            />
+
+            <button onClick={applyCoupon}>Apply Coupon</button>
+
+            <p>{couponMessage}</p>
+
+            <p>Discount: ${discountAmount.toFixed(2)}</p>
+            <h3>Total: ${finalTotal.toFixed(2)}</h3>
           </>
         )}
       </section>
