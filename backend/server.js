@@ -115,6 +115,26 @@ app.post("/api/orders", async (req, res) => {
   });
 });
 
+app.delete("/api/orders/:id", async (req, res) => {
+  try {
+    const deletedOrder = await Order.findByIdAndDelete(req.params.id);
+
+    if (!deletedOrder) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
+
+    res.json({
+      message: "Order deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Could not delete order",
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
