@@ -1,81 +1,87 @@
 # Foodify
 
-Live Demo: https://foodify-beige.vercel.app
+Foodify is a full-stack food ordering web application built with **React, Vite, Node.js, Express, and MongoDB Atlas**.
 
-Foodify is a responsive food-ordering web app built with React and Vite.
+Users can browse restaurants and food items, add items to cart, place orders, and view admin orders saved permanently in MongoDB.
 
-Users can browse restaurants, view dishes, filter food, add items to cart, apply a coupon, and place an order.
+## Live Demo
 
-## Features
+- Frontend: https://foodify-beige.vercel.app
+- Backend: https://foodify-backend-qkax.onrender.com
 
-- Browse food menu
-- Restaurant cards
-- Search dishes
-- Filter by category
-- Filter by restaurant
-- Filter by badge
-- Sort dishes
-- Favorite dishes
-- Add items to cart
-- Increase/decrease quantity
-- Remove cart items
-- Cart saved with localStorage
-- Coupon code discount
-- Delivery or pickup option
-- Checkout validation
-- Order summary
-- Order status
-- Responsive design
+## Backend API Links
 
-## Tech Stack
-
-- React
-- Vite
-- JavaScript
-- CSS
-- Git
-
-## Coupon Code
-
-Use this coupon for testing:
-
-```text
-FOODIFY10
-```
-
-## How to Run Locally
-
-```bash
-npm install
-npm run dev
-```
-
-Open the local URL shown in the terminal.
+- Foods API: https://foodify-backend-qkax.onrender.com/api/foods
+- Orders API: https://foodify-backend-qkax.onrender.com/api/orders
 
 ## Screenshots
 
-### Home Page
-![Home Page](public/screenshots/home.png)
+### Homepage
 
-### Restaurants Section
-![Restaurants Section](public/screenshots/restaurants.png)
+![Foodify Homepage](./screenshots/homepage.png)
 
-### Menu Section
-![Menu Section](public/screenshots/menu.png)
+### Admin Orders
 
-### Cart and Checkout
-![Cart and Checkout](public/screenshots/cart-checkout.png)
+![Foodify Admin Orders](./screenshots/admin-orders.png)
 
-## Future Improvements
+## Tech Stack
 
-- User login
-- Admin dashboard
-- Real backend
-- Database
-- Payment integration
-- Real restaurant menu management
-- Online deployment
+### Frontend
+- React
+- Vite
+- CSS
+- Vercel
 
-## Project Status
+### Backend
+- Node.js
+- Express.js
+- MongoDB Atlas
+- Mongoose
+- Render
 
-This is a frontend portfolio project. Backend features will be added later.
+## Features
+
+- Responsive food ordering UI
+- Restaurant section
+- Menu section
+- Add to cart
+- Increase/decrease quantity
+- Remove from cart
+- Coupon support
+- Order form
+- Order summary
+- Order status display
+- Admin Orders section
+- Orders saved permanently in MongoDB
+- Delete order from Admin Orders
+- Live frontend connected to live backend
+
+## Project Structure
+
+```txt
+foodify/
+├── backend/
+│   ├── models/
+│   │   └── Order.js
+│   ├── server.js
+│   └── package.json
+├── screenshots/
+│   ├── homepage.png
+│   └── admin-orders.png
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Hero.jsx
+│   │   ├── RestaurantSection.jsx
+│   │   ├── MenuSection.jsx
+│   │   ├── Cart.jsx
+│   │   ├── OrderForm.jsx
+│   │   ├── OrderSummary.jsx
+│   │   ├── OrderStatus.jsx
+│   │   ├── AdminOrders.jsx
+│   │   └── Footer.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   └── main.jsx
+├── README.md
+└── package.json
