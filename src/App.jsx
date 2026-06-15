@@ -193,9 +193,11 @@ function App() {
         finalTotal={finalTotal}
       />
 
-      <OrderStatus orderStatus={orderStatus} />
-<AdminOrders />
-<Footer />
+          <OrderStatus orderStatus={orderStatus} />
+
+      <AdminOrders />
+
+      <Footer />
     </div>
   );
 }
