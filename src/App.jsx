@@ -8,6 +8,7 @@ import OrderForm from "./components/OrderForm.jsx";
 import OrderSummary from "./components/OrderSummary.jsx";
 import OrderStatus from "./components/OrderStatus.jsx";
 import Footer from "./components/Footer.jsx";
+import AdminOrders from "./components/AdminOrders.jsx";
 
 const API_URL = "https://foodify-backend-qkax.onrender.com";
 
@@ -193,7 +194,8 @@ function App() {
       />
 
       <OrderStatus orderStatus={orderStatus} />
-      <Footer />
+<AdminOrders />
+<Footer />
     </div>
   );
 }
