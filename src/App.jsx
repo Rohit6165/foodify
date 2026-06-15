@@ -9,6 +9,8 @@ import OrderSummary from "./components/OrderSummary.jsx";
 import OrderStatus from "./components/OrderStatus.jsx";
 import Footer from "./components/Footer.jsx";
 
+const API_URL = "https://foodify-backend-qkax.onrender.com";
+
 function App() {
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem("foodifyCart");
@@ -100,27 +102,41 @@ function App() {
       return;
     }
 
-    const orderData = {
-      customerName,
-      customerPhone,
-      customerAddress,
-      orderType,
-      items: cartItems,
-      total: finalTotal,
-    };
+    try {
+      setCheckoutMessage("Placing your order...");
 
-    const response = await fetch("http://localhost:5001/api/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(orderData),
-    });
+      const orderData = {
+        customerName,
+        customerPhone,
+        customerAddress,
+        orderType,
+        items: cartItems,
+        total: finalTotal,
+      };
 
-    const data = await response.json();
+      const response = await fetch(`${API_URL}/api/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
 
-    setCheckoutMessage(data.message);
-    setOrderStatus(data.order.status);
+      const data = await response.json();
+
+      if (!response.ok) {
+        setCheckoutMessage("Something went wrong. Please try again.");
+        setOrderStatus("");
+        return;
+      }
+
+      setCheckoutMessage(data.message);
+      setOrderStatus(data.order.status);
+      setCartItems([]);
+    } catch (error) {
+      setCheckoutMessage("Backend is waking up. Please try again in 30 seconds.");
+      setOrderStatus("");
+    }
   }
 
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);

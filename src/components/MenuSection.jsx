@@ -14,7 +14,7 @@ function MenuSection({ addToCart }) {
   const badges = ["All", "Popular", "New", "Spicy"];
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/foods")
+   fetch("https://foodify-backend-qkax.onrender.com/api/foods")
       .then((response) => response.json())
       .then((data) => setFoods(data))
       .catch((error) => console.log(error));
