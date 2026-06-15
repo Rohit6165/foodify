@@ -182,3 +182,24 @@
     border-right-color: var(--border);
   }
 }
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-preparing {
+  background-color: #ffe0b2;
+  color: #e65100;
+}
+
+.status-delivered {
+  background-color: #d4edda;
+  color: #155724;
+}

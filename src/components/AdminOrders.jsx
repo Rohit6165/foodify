@@ -51,7 +51,9 @@ function AdminOrders() {
               <div className="admin-order-card" key={order._id}>
                 <div className="restaurant-card-header">
                   <h3>{order.customerName}</h3>
-                  <span className="badge">{order.status}</span>
+                <span className={`badge status-${order.status.toLowerCase()}`}>
+  {order.status}
+</span>
                 </div>
 
                 <p>📞 {order.customerPhone}</p>
