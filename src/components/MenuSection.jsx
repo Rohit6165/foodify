@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import categories from "../data/categories";
-import restaurants from "../data/restaurants";
+
+const API_URL = "https://foodify-backend-qkax.onrender.com";
 
 function MenuSection({ addToCart }) {
   const [foods, setFoods] = useState([]);
@@ -10,14 +10,22 @@ function MenuSection({ addToCart }) {
   const [selectedBadge, setSelectedBadge] = useState("All");
   const [sortOption, setSortOption] = useState("default");
   const [favoriteIds, setFavoriteIds] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  const categories = ["All", "Burger", "Pizza", "Rice"];
+  const restaurants = ["Foodify Grill", "Pizza Palace", "Spice House"];
   const badges = ["All", "Popular", "New", "Spicy"];
 
   useEffect(() => {
-   fetch("https://foodify-backend-qkax.onrender.com/api/foods")
+    fetch(`${API_URL}/api/foods`)
       .then((response) => response.json())
-      .then((data) => setFoods(data))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        setFoods(data);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   }, []);
 
   function toggleFavorite(foodId) {
@@ -43,6 +51,15 @@ function MenuSection({ addToCart }) {
       if (sortOption === "name") return a.name.localeCompare(b.name);
       return 0;
     });
+
+  if (loading) {
+    return (
+      <section id="menu">
+        <h2>Menu</h2>
+        <p>Loading menu...</p>
+      </section>
+    );
+  }
 
   return (
     <section id="menu">
@@ -76,8 +93,8 @@ function MenuSection({ addToCart }) {
         <button onClick={() => setSelectedRestaurant("All")}>All Restaurants</button>
 
         {restaurants.map((restaurant) => (
-          <button key={restaurant.id} onClick={() => setSelectedRestaurant(restaurant.name)}>
-            {restaurant.name}
+          <button key={restaurant} onClick={() => setSelectedRestaurant(restaurant)}>
+            {restaurant}
           </button>
         ))}
       </div>
