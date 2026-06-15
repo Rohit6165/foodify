@@ -7,6 +7,29 @@ function AdminOrders() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
+    async function deleteOrder(orderId) {
+    const confirmDelete = window.confirm("Are you sure you want to delete this order?");
+
+    if (!confirmDelete) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/api/orders/${orderId}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        setErrorMessage("Could not delete order. Please try again.");
+        return;
+      }
+
+      setOrders(orders.filter((order) => order._id !== orderId));
+    } catch (error) {
+      setErrorMessage("Backend error. Could not delete order.");
+    }
+  }
+
   useEffect(() => {
     fetch(`${API_URL}/api/orders`)
       .then((response) => {
@@ -68,6 +91,9 @@ function AdminOrders() {
                 ))}
 
                 <p>🕒 {new Date(order.createdAt).toLocaleString()}</p>
+                <button onClick={() => deleteOrder(order._id)}>
+  Delete Order
+</button>
               </div>
             ))}
           </div>
