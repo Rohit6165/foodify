@@ -7,8 +7,39 @@ function AdminOrders() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
-    async function deleteOrder(orderId) {
-    const confirmDelete = window.confirm("Are you sure you want to delete this order?");
+  async function updateOrderStatus(orderId, newStatus) {
+    try {
+      const response = await fetch(`${API_URL}/api/orders/${orderId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrorMessage("Could not update order status.");
+        return;
+      }
+
+      setOrders(
+        orders.map((order) =>
+          order._id === orderId ? data.order : order
+        )
+      );
+
+      setErrorMessage("");
+    } catch (error) {
+      setErrorMessage("Backend error. Could not update order status.");
+    }
+  }
+
+  async function deleteOrder(orderId) {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this order?"
+    );
 
     if (!confirmDelete) {
       return;
@@ -25,6 +56,7 @@ function AdminOrders() {
       }
 
       setOrders(orders.filter((order) => order._id !== orderId));
+      setErrorMessage("");
     } catch (error) {
       setErrorMessage("Backend error. Could not delete order.");
     }
@@ -74,14 +106,30 @@ function AdminOrders() {
               <div className="admin-order-card" key={order._id}>
                 <div className="restaurant-card-header">
                   <h3>{order.customerName}</h3>
-                <span className={`badge status-${order.status.toLowerCase()}`}>
-  {order.status}
-</span>
+                  <span className={`badge status-${order.status.toLowerCase()}`}>
+                    {order.status}
+                  </span>
                 </div>
 
                 <p>📞 {order.customerPhone}</p>
                 <p>🚚 {order.orderType}</p>
                 <p>💰 ${order.total.toFixed(2)}</p>
+
+                <label>
+                  Update Status:
+                  <select
+                    value={order.status}
+                    onChange={(event) =>
+                      updateOrderStatus(order._id, event.target.value)
+                    }
+                  >
+                    <option value="Preparing your order">
+                      Preparing your order
+                    </option>
+                    <option value="Out for delivery">Out for delivery</option>
+                    <option value="Delivered">Delivered</option>
+                  </select>
+                </label>
 
                 <h4>Items</h4>
                 {order.items.map((item, index) => (
@@ -91,9 +139,10 @@ function AdminOrders() {
                 ))}
 
                 <p>🕒 {new Date(order.createdAt).toLocaleString()}</p>
+
                 <button onClick={() => deleteOrder(order._id)}>
-  Delete Order
-</button>
+                  Delete Order
+                </button>
               </div>
             ))}
           </div>
