@@ -7,6 +7,22 @@ function AdminOrders() {
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
+  function getStatusClass(status) {
+    if (status === "Preparing your order") {
+      return "status-preparing";
+    }
+
+    if (status === "Out for delivery") {
+      return "status-out-for-delivery";
+    }
+
+    if (status === "Delivered") {
+      return "status-delivered";
+    }
+
+    return "status-preparing";
+  }
+
   async function updateOrderStatus(orderId, newStatus) {
     try {
       const response = await fetch(`${API_URL}/api/orders/${orderId}`, {
@@ -106,7 +122,7 @@ function AdminOrders() {
               <div className="admin-order-card" key={order._id}>
                 <div className="restaurant-card-header">
                   <h3>{order.customerName}</h3>
-                  <span className={`badge status-${order.status.toLowerCase()}`}>
+                  <span className={`badge ${getStatusClass(order.status)}`}>
                     {order.status}
                   </span>
                 </div>
