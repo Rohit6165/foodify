@@ -13,7 +13,7 @@ function MenuSection({ addToCart }) {
   const [loading, setLoading] = useState(true);
 
   const categories = ["All", "Burger", "Pizza", "Rice"];
-  const restaurants = ["Foodify Grill", "Pizza Palace", "Spice House"];
+  const restaurants = ["All", "Foodify Grill", "Pizza Palace", "Spice House"];
   const badges = ["All", "Popular", "New", "Spicy"];
 
   useEffect(() => {
@@ -38,9 +38,16 @@ function MenuSection({ addToCart }) {
 
   const filteredFoods = foods
     .filter((food) => {
-      const matchesSearch = food.name.toLowerCase().includes(searchText.toLowerCase());
-      const matchesCategory = selectedCategory === "All" || food.category === selectedCategory;
-      const matchesRestaurant = selectedRestaurant === "All" || food.restaurant === selectedRestaurant;
+      const matchesSearch = food.name
+        .toLowerCase()
+        .includes(searchText.toLowerCase());
+
+      const matchesCategory =
+        selectedCategory === "All" || food.category === selectedCategory;
+
+      const matchesRestaurant =
+        selectedRestaurant === "All" || food.restaurant === selectedRestaurant;
+
       const matchesBadge = selectedBadge === "All" || food.badge === selectedBadge;
 
       return matchesSearch && matchesCategory && matchesRestaurant && matchesBadge;
@@ -73,7 +80,10 @@ function MenuSection({ addToCart }) {
           onChange={(event) => setSearchText(event.target.value)}
         />
 
-        <select value={sortOption} onChange={(event) => setSortOption(event.target.value)}>
+        <select
+          value={sortOption}
+          onChange={(event) => setSortOption(event.target.value)}
+        >
           <option value="default">Default</option>
           <option value="price-low">Price: Low to High</option>
           <option value="price-high">Price: High to Low</option>
@@ -83,25 +93,35 @@ function MenuSection({ addToCart }) {
 
       <div className="filter-row">
         {categories.map((category) => (
-          <button key={category} onClick={() => setSelectedCategory(category)}>
+          <button
+            className={selectedCategory === category ? "active-filter" : ""}
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+          >
             {category}
           </button>
         ))}
       </div>
 
       <div className="filter-row">
-        <button onClick={() => setSelectedRestaurant("All")}>All Restaurants</button>
-
         {restaurants.map((restaurant) => (
-          <button key={restaurant} onClick={() => setSelectedRestaurant(restaurant)}>
-            {restaurant}
+          <button
+            className={selectedRestaurant === restaurant ? "active-filter" : ""}
+            key={restaurant}
+            onClick={() => setSelectedRestaurant(restaurant)}
+          >
+            {restaurant === "All" ? "All Restaurants" : restaurant}
           </button>
         ))}
       </div>
 
       <div className="filter-row">
         {badges.map((badge) => (
-          <button key={badge} onClick={() => setSelectedBadge(badge)}>
+          <button
+            className={selectedBadge === badge ? "active-filter" : ""}
+            key={badge}
+            onClick={() => setSelectedBadge(badge)}
+          >
             {badge}
           </button>
         ))}
@@ -128,7 +148,9 @@ function MenuSection({ addToCart }) {
               <p className="price">${food.price}</p>
 
               <button onClick={() => toggleFavorite(food.id)}>
-                {favoriteIds.includes(food.id) ? "❤️ Favorite" : "🤍 Add Favorite"}
+                {favoriteIds.includes(food.id)
+                  ? "❤️ Favorite"
+                  : "🤍 Add Favorite"}
               </button>
 
               <button onClick={() => addToCart(food)}>Add to Cart</button>
