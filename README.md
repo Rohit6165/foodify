@@ -41,6 +41,11 @@ Users can browse restaurants and food items, add items to cart, place orders, an
 
 ## Features
 
+- Update order status from Admin Orders
+- Status dropdown with Preparing, Out for delivery, and Delivered
+- Active menu filter highlighting
+- Clear Filters button for search and filters
+
 - Responsive food ordering UI
 - Restaurant section
 - Menu section
