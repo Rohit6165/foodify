@@ -203,3 +203,10 @@
   background-color: #d4edda;
   color: #155724;
 }
+
+.active-filter {
+  background-color: #ff6b35;
+  color: white;
+  border: 2px solid #ff6b35;
+  font-weight: 700;
+}
