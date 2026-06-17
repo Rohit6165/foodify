@@ -98,6 +98,21 @@ app.get("/api/categories", (req, res) => {
   res.json(categories);
 });
 
+app.get("/api/orders/customer/:phone", async (req, res) => {
+  try {
+    const customerOrders = await Order.find({
+      customerPhone: req.params.phone,
+    }).sort({ createdAt: -1 });
+
+    res.json(customerOrders);
+  } catch (error) {
+    res.status(500).json({
+      message: "Could not load customer orders",
+      error: error.message,
+    });
+  }
+});
+
 app.get("/api/orders", async (req, res) => {
   try {
     const savedOrders = await Order.find().sort({ createdAt: -1 });
