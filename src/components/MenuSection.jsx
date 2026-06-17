@@ -28,6 +28,14 @@ function MenuSection({ addToCart }) {
       });
   }, []);
 
+  function clearFilters() {
+  setSearchText("");
+  setSelectedCategory("All");
+  setSelectedRestaurant("All");
+  setSelectedBadge("All");
+  setSortOption("default");
+}
+
   function toggleFavorite(foodId) {
     if (favoriteIds.includes(foodId)) {
       setFavoriteIds(favoriteIds.filter((id) => id !== foodId));
@@ -88,7 +96,9 @@ function MenuSection({ addToCart }) {
           <option value="price-low">Price: Low to High</option>
           <option value="price-high">Price: High to Low</option>
           <option value="name">Name: A to Z</option>
-        </select>
+                </select>
+
+        <button onClick={clearFilters}>Clear Filters</button>
       </div>
 
       <div className="filter-row">
