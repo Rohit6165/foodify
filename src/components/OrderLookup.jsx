@@ -67,7 +67,7 @@ function OrderLookup() {
               <p>📞 {order.customerPhone}</p>
               <p>🚚 {order.orderType}</p>
               <p>📦 Status: {order.status}</p>
-              <p>💰 ${order.total.toFixed(2)}</p>
+                <p>💰 Total: Rs. {order.total.toFixed(2)}</p>
               <p>🕒 {new Date(order.createdAt).toLocaleString()}</p>
 
               <h4>Items</h4>

@@ -29,7 +29,7 @@ function OrderSummary({
         ))
       )}
 
-      <h3>Total: ${finalTotal.toFixed(2)}</h3>
+      <h3>Total: Rs. {finalTotal.toFixed(2)}</h3>
     </section>
   );
 }

@@ -155,7 +155,7 @@ function MenuSection({ addToCart }) {
                 {food.category} • {food.restaurant}
               </p>
 
-              <p className="price">${food.price}</p>
+             <p className="price">Rs. {food.price}</p>
 
               <button onClick={() => toggleFavorite(food.id)}>
                 {favoriteIds.includes(food.id)

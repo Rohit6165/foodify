@@ -24,7 +24,7 @@ function Cart({
               <div className="cart-item" key={item.id}>
                 <div>
                   <strong>{item.name}</strong>
-                  <p>${item.price} each</p>
+                  <p>Rs. {item.price} each</p>
                   <p>Quantity: {item.quantity}</p>
                 </div>
 
@@ -38,7 +38,7 @@ function Cart({
           </div>
 
           <div className="checkout-box">
-            <h3>Subtotal: ${cartTotal.toFixed(2)}</h3>
+            <h3>Subtotal: Rs. {cartTotal.toFixed(2)}</h3>
 
             <input
               type="text"
@@ -49,8 +49,8 @@ function Cart({
 
             <button onClick={applyCoupon}>Apply Coupon</button>
             <p>{couponMessage}</p>
-            <p>Discount: ${discountAmount.toFixed(2)}</p>
-            <h3>Total: ${finalTotal.toFixed(2)}</h3>
+            <p>Discount: Rs. {discountAmount.toFixed(2)}</p>
+            <h3>Total: Rs. {finalTotal.toFixed(2)}</h3>
           </div>
         </>
       )}
