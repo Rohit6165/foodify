@@ -129,6 +129,7 @@ function AdminOrders() {
 
                 <p>📞 {order.customerPhone}</p>
                 <p>🚚 {order.orderType}</p>
+                <p>💳 {order.paymentMethod || "Cash on Delivery"}</p>
                 <p>💰 Total: Rs. {order.total.toFixed(2)}</p>
 
                 <label>

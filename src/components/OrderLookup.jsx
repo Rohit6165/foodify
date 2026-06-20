@@ -66,6 +66,7 @@ function OrderLookup() {
               <h3>{order.customerName}</h3>
               <p>📞 {order.customerPhone}</p>
               <p>🚚 {order.orderType}</p>
+                <p>💳 {order.paymentMethod || "Cash on Delivery"}</p>
               <p>📦 Status: {order.status}</p>
                 <p>💰 Total: Rs. {order.total.toFixed(2)}</p>
               <p>🕒 {new Date(order.createdAt).toLocaleString()}</p>
