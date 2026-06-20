@@ -31,6 +31,10 @@ function App() {
   const [couponMessage, setCouponMessage] = useState("");
   const [orderStatus, setOrderStatus] = useState("");
 
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminMessage, setAdminMessage] = useState("");
+
   useEffect(() => {
     localStorage.setItem("foodifyCart", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -88,7 +92,6 @@ function App() {
       return;
     }
 
-
     if (customerName.trim() === "") {
       setCheckoutMessage("Please enter your name.");
       setOrderStatus("");
@@ -97,22 +100,16 @@ function App() {
 
     const nepaliPhoneRegex = /^(97|98)\d{8}$/;
 
-if (customerPhone.trim() === "") {
-  setCheckoutMessage("Please enter your phone number.");
-  setOrderStatus("");
-  return;
-}
-
-if (!nepaliPhoneRegex.test(customerPhone.trim())) {
-  setCheckoutMessage(
-    "Please enter a valid Nepali phone number starting with 97 or 98."
-  );
-  setOrderStatus("");
-  return;
-}
-
     if (customerPhone.trim() === "") {
       setCheckoutMessage("Please enter your phone number.");
+      setOrderStatus("");
+      return;
+    }
+
+    if (!nepaliPhoneRegex.test(customerPhone.trim())) {
+      setCheckoutMessage(
+        "Please enter a valid Nepali phone number starting with 97 or 98."
+      );
       setOrderStatus("");
       return;
     }
@@ -162,6 +159,20 @@ if (!nepaliPhoneRegex.test(customerPhone.trim())) {
     }
   }
 
+  function handleAdminLogin() {
+    if (adminPassword === "Gopal2426") {
+      setIsAdminLoggedIn(true);
+      setAdminMessage("");
+      setAdminPassword("");
+    } else {
+      setAdminMessage("Incorrect admin password.");
+    }
+  }
+
+  function handleAdminLogout() {
+    setIsAdminLoggedIn(false);
+  }
+
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const cartTotal = cartItems.reduce(
@@ -198,6 +209,8 @@ if (!nepaliPhoneRegex.test(customerPhone.trim())) {
         setOrderType={setOrderType}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
+        deliveryArea={deliveryArea}
+        setDeliveryArea={setDeliveryArea}
         customerName={customerName}
         setCustomerName={setCustomerName}
         customerPhone={customerPhone}
@@ -206,26 +219,47 @@ if (!nepaliPhoneRegex.test(customerPhone.trim())) {
         setCustomerAddress={setCustomerAddress}
         placeOrder={placeOrder}
         checkoutMessage={checkoutMessage}
-        deliveryArea={deliveryArea}
-setDeliveryArea={setDeliveryArea}
       />
 
       <OrderSummary
         orderType={orderType}
         paymentMethod={paymentMethod}
+        deliveryArea={deliveryArea}
         customerName={customerName}
         customerPhone={customerPhone}
         customerAddress={customerAddress}
         cartItems={cartItems}
         finalTotal={finalTotal}
-        deliveryArea={deliveryArea}
       />
 
       <OrderStatus orderStatus={orderStatus} />
 
       <OrderLookup />
 
-      <AdminOrders />
+      <section>
+        <h2>Admin Login</h2>
+
+        {isAdminLoggedIn ? (
+          <>
+            <p>Admin is logged in.</p>
+            <button onClick={handleAdminLogout}>Logout</button>
+            <AdminOrders />
+          </>
+        ) : (
+          <>
+            <input
+              type="password"
+              placeholder="Enter admin password"
+              value={adminPassword}
+              onChange={(event) => setAdminPassword(event.target.value)}
+            />
+
+            <button onClick={handleAdminLogin}>Login</button>
+
+            <p>{adminMessage}</p>
+          </>
+        )}
+      </section>
 
       <Footer />
     </div>
