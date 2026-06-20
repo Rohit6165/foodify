@@ -5,6 +5,10 @@ const orderSchema = new mongoose.Schema(
     customerName: String,
     customerPhone: String,
     customerAddress: String,
+    deliveryArea: {
+      type: String,
+      default: "Kathmandu",
+    },
     orderType: String,
     paymentMethod: {
       type: String,

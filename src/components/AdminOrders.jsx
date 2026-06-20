@@ -129,6 +129,9 @@ function AdminOrders() {
 
                 <p>📞 {order.customerPhone}</p>
                 <p>🚚 {order.orderType}</p>
+                {order.orderType === "Delivery" && (
+  <p>📍 {order.deliveryArea || "Kathmandu"}</p>
+)}
                 <p>💳 {order.paymentMethod || "Cash on Delivery"}</p>
                 <p>💰 Total: Rs. {order.total.toFixed(2)}</p>
 

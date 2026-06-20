@@ -1,6 +1,7 @@
 function OrderSummary({
   orderType,
   paymentMethod,
+  deliveryArea,
   customerName,
   customerPhone,
   customerAddress,
@@ -13,6 +14,9 @@ function OrderSummary({
 
       <p>Order Type: {orderType}</p>
       <p>Payment Method: {paymentMethod}</p>
+
+      {orderType === "Delivery" && <p>Delivery Area: {deliveryArea}</p>}
+
       <p>Name: {customerName || "Not entered"}</p>
       <p>Phone: {customerPhone || "Not entered"}</p>
 

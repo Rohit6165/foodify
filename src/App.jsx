@@ -22,6 +22,7 @@ function App() {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
+  const [deliveryArea, setDeliveryArea] = useState("Kathmandu");
   const [orderType, setOrderType] = useState("Delivery");
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
   const [checkoutMessage, setCheckoutMessage] = useState("");
@@ -112,6 +113,7 @@ function App() {
         customerName,
         customerPhone,
         customerAddress,
+        deliveryArea,
         orderType,
         paymentMethod,
         items: cartItems,
@@ -187,6 +189,8 @@ function App() {
         setCustomerAddress={setCustomerAddress}
         placeOrder={placeOrder}
         checkoutMessage={checkoutMessage}
+        deliveryArea={deliveryArea}
+setDeliveryArea={setDeliveryArea}
       />
 
       <OrderSummary
@@ -197,6 +201,7 @@ function App() {
         customerAddress={customerAddress}
         cartItems={cartItems}
         finalTotal={finalTotal}
+        deliveryArea={deliveryArea}
       />
 
       <OrderStatus orderStatus={orderStatus} />

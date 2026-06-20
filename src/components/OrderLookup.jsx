@@ -65,7 +65,9 @@ function OrderLookup() {
             <div className="admin-order-card" key={order._id}>
               <h3>{order.customerName}</h3>
               <p>📞 {order.customerPhone}</p>
-              <p>🚚 {order.orderType}</p>
+              <p>🚚 {order.orderType}</p>{order.orderType === "Delivery" && (
+  <p>📍 {order.deliveryArea || "Kathmandu"}</p>
+)}
                 <p>💳 {order.paymentMethod || "Cash on Delivery"}</p>
               <p>📦 Status: {order.status}</p>
                 <p>💰 Total: Rs. {order.total.toFixed(2)}</p>

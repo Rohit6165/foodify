@@ -3,6 +3,8 @@ function OrderForm({
   setOrderType,
   paymentMethod,
   setPaymentMethod,
+  deliveryArea,
+  setDeliveryArea,
   customerName,
   setCustomerName,
   customerPhone,
@@ -55,12 +57,26 @@ function OrderForm({
       />
 
       {orderType === "Delivery" && (
-        <input
-          type="text"
-          placeholder="Delivery address"
-          value={customerAddress}
-          onChange={(event) => setCustomerAddress(event.target.value)}
-        />
+        <>
+          <select
+            value={deliveryArea}
+            onChange={(event) => setDeliveryArea(event.target.value)}
+          >
+            <option value="Kathmandu">Kathmandu</option>
+            <option value="Lalitpur">Lalitpur</option>
+            <option value="Bhaktapur">Bhaktapur</option>
+            <option value="Pokhara">Pokhara</option>
+            <option value="Chitwan">Chitwan</option>
+            <option value="Butwal">Butwal</option>
+          </select>
+
+          <input
+            type="text"
+            placeholder="Full delivery address"
+            value={customerAddress}
+            onChange={(event) => setCustomerAddress(event.target.value)}
+          />
+        </>
       )}
 
       <label>
