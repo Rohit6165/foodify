@@ -1,5 +1,6 @@
 function OrderSummary({
   orderType,
+  paymentMethod,
   customerName,
   customerPhone,
   customerAddress,
@@ -9,7 +10,9 @@ function OrderSummary({
   return (
     <section>
       <h2>Order Summary</h2>
+
       <p>Order Type: {orderType}</p>
+      <p>Payment Method: {paymentMethod}</p>
       <p>Name: {customerName || "Not entered"}</p>
       <p>Phone: {customerPhone || "Not entered"}</p>
 

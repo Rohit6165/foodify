@@ -6,6 +6,10 @@ const orderSchema = new mongoose.Schema(
     customerPhone: String,
     customerAddress: String,
     orderType: String,
+    paymentMethod: {
+      type: String,
+      default: "Cash on Delivery",
+    },
     items: Array,
     total: Number,
     status: {

@@ -23,6 +23,7 @@ function App() {
   const [customerPhone, setCustomerPhone] = useState("");
   const [customerAddress, setCustomerAddress] = useState("");
   const [orderType, setOrderType] = useState("Delivery");
+  const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
   const [checkoutMessage, setCheckoutMessage] = useState("");
   const [couponCode, setCouponCode] = useState("");
   const [discountPercent, setDiscountPercent] = useState(0);
@@ -112,6 +113,7 @@ function App() {
         customerPhone,
         customerAddress,
         orderType,
+        paymentMethod,
         items: cartItems,
         total: finalTotal,
       };
@@ -175,6 +177,8 @@ function App() {
       <OrderForm
         orderType={orderType}
         setOrderType={setOrderType}
+        paymentMethod={paymentMethod}
+        setPaymentMethod={setPaymentMethod}
         customerName={customerName}
         setCustomerName={setCustomerName}
         customerPhone={customerPhone}
@@ -187,6 +191,7 @@ function App() {
 
       <OrderSummary
         orderType={orderType}
+        paymentMethod={paymentMethod}
         customerName={customerName}
         customerPhone={customerPhone}
         customerAddress={customerAddress}
@@ -194,7 +199,7 @@ function App() {
         finalTotal={finalTotal}
       />
 
-               <OrderStatus orderStatus={orderStatus} />
+      <OrderStatus orderStatus={orderStatus} />
 
       <OrderLookup />
 

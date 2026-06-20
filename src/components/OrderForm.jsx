@@ -1,6 +1,8 @@
 function OrderForm({
   orderType,
   setOrderType,
+  paymentMethod,
+  setPaymentMethod,
   customerName,
   setCustomerName,
   customerPhone,
@@ -60,6 +62,18 @@ function OrderForm({
           onChange={(event) => setCustomerAddress(event.target.value)}
         />
       )}
+
+      <label>
+        Payment Method:
+        <select
+          value={paymentMethod}
+          onChange={(event) => setPaymentMethod(event.target.value)}
+        >
+          <option value="Cash on Delivery">Cash on Delivery</option>
+          <option value="eSewa">eSewa</option>
+          <option value="Khalti">Khalti</option>
+        </select>
+      </label>
 
       <button onClick={placeOrder}>Place Order</button>
 
