@@ -24,7 +24,7 @@ const restaurants = [
   {
     id: 1,
     name: "Foodify Grill",
-    cuisine: "American",
+    cuisine: "Nepali Fast Food",
     rating: 4.6,
     deliveryTime: "25-35 min",
     isOpen: true,
@@ -32,8 +32,8 @@ const restaurants = [
   },
   {
     id: 2,
-    name: "Pizza Palace",
-    cuisine: "Italian",
+    name: "Kathmandu Kitchen",
+    cuisine: "Nepali & Chinese",
     rating: 4.7,
     deliveryTime: "30-40 min",
     isOpen: true,
@@ -42,10 +42,10 @@ const restaurants = [
   {
     id: 3,
     name: "Spice House",
-    cuisine: "Indian",
+    cuisine: "Thakali & Sekuwa",
     rating: 4.8,
     deliveryTime: "35-45 min",
-    isOpen: false,
+    isOpen: true,
     hours: "12:00 PM - 9:00 PM",
   },
 ];
@@ -53,34 +53,61 @@ const restaurants = [
 const foods = [
   {
     id: 1,
-    name: "Cheese Burger",
-    category: "Burger",
-    price: 899,
+    name: "Chicken Momo",
+    category: "Momo",
+    price: 180,
     restaurant: "Foodify Grill",
     badge: "Popular",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600",
+    image: "https://images.unsplash.com/photo-1626776876729-bab4369a5a5a?w=600",
   },
   {
     id: 2,
-    name: "Pepperoni Pizza",
-    category: "Pizza",
-    price: 1299,
-    restaurant: "Pizza Palace",
-    badge: "New",
-    image: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=600",
+    name: "Chicken Chowmein",
+    category: "Noodles",
+    price: 220,
+    restaurant: "Kathmandu Kitchen",
+    badge: "Popular",
+    image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600",
   },
   {
     id: 3,
     name: "Chicken Biryani",
     category: "Rice",
-    price: 1099,
+    price: 350,
     restaurant: "Spice House",
     badge: "Spicy",
     image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=600",
   },
+  {
+    id: 4,
+    name: "Thakali Khana Set",
+    category: "Thakali",
+    price: 450,
+    restaurant: "Spice House",
+    badge: "New",
+    image: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=600",
+  },
+  {
+    id: 5,
+    name: "Chicken Sekuwa",
+    category: "Sekuwa",
+    price: 300,
+    restaurant: "Foodify Grill",
+    badge: "Spicy",
+    image: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600",
+  },
+  {
+    id: 6,
+    name: "Veg Fried Rice",
+    category: "Rice",
+    price: 200,
+    restaurant: "Kathmandu Kitchen",
+    badge: "New",
+    image: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600",
+  },
 ];
 
-const categories = ["All", "Burger", "Pizza", "Rice"];
+const categories = ["All", "Momo", "Noodles", "Rice", "Thakali", "Sekuwa"];
 
 app.get("/", (req, res) => {
   res.send("Foodify backend is running");
