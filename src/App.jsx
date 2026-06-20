@@ -88,11 +88,28 @@ function App() {
       return;
     }
 
+
     if (customerName.trim() === "") {
       setCheckoutMessage("Please enter your name.");
       setOrderStatus("");
       return;
     }
+
+    const nepaliPhoneRegex = /^(97|98)\d{8}$/;
+
+if (customerPhone.trim() === "") {
+  setCheckoutMessage("Please enter your phone number.");
+  setOrderStatus("");
+  return;
+}
+
+if (!nepaliPhoneRegex.test(customerPhone.trim())) {
+  setCheckoutMessage(
+    "Please enter a valid Nepali phone number starting with 97 or 98."
+  );
+  setOrderStatus("");
+  return;
+}
 
     if (customerPhone.trim() === "") {
       setCheckoutMessage("Please enter your phone number.");
